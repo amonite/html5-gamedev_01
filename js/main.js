@@ -7,7 +7,7 @@ canvas.height = 480;
 let fps = 0;
 let interval;
 
-let lastUpdate = Date.now();
+let lastUpdate = 0;//Date.now();
 
 function showFPS(){
     ctx.fillStyle = 'white';
@@ -15,12 +15,17 @@ function showFPS(){
     ctx.fillText(Math.floor(fps) + 'fps', 10, 20);
 }
 
-function run(){
+function run(time){
     requestAnimationFrame(run); // remove when using setInterval 
-    let now = Date.now();
-    let dt = (now - lastUpdate) / 1000;
+    //let now = Date.now();
+    let dt = (time - lastUpdate) / 1000;
+
+    if(dt < (1 / 75)){
+        return;
+    }
+
     fps = 1 / dt;
-    lastUpdate = now;
+    lastUpdate = time;
     update(dt);
     ctx.clearRect(0, 0, canvas.width, canvas.height); // cls
     draw(ctx);
