@@ -2,6 +2,7 @@ let img;
 let timer;
 const log = console.log;
 
+// keys 
 let key_right = false;
 let key_left = false;
 let key_up = false;
